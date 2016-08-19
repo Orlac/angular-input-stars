@@ -36,6 +36,8 @@ angular.module('angular-input-stars', [])
                 }
             };
 
+            var minValue = attrs.min || 0;
+
             scope.items = new Array(+attrs.max);
             scope.listClass = attrs.listClass || 'angular-input-stars';
 
@@ -86,6 +88,10 @@ angular.module('angular-input-stars', [])
                 // ignore setting value if readonly
                 if (computed.readonly) {
                     return;
+                }
+
+                if(minValue){
+                    index = Math.max(index, minValue-1);
                 }
 
                 var star = e.target,
